@@ -68,6 +68,8 @@ cluster.routing.allocation.disk.watermark.flood_stage: 1gb
 
 bootstrap.system_call_filter: false
 EOF
+
+    cp "$PANDORA_EXPRESS_ROOT/conf/*" "$PANDORA_EXPRESS_CONF_PATH/"
 }
 
 start_pandora() {
