@@ -21,14 +21,13 @@ COPY rootfs /
 
 WORKDIR /home/pdr
 # adjust permissions before changing into the user
-RUN mkdir .pandora && \
-    chown pdr:pdr .pandora && \
-    chown -R pdr:pdr conf/
+RUN mkdir .pandora lib/pandora/cache logs && \
+    chown pdr:pdr .pandora lib/pandora/cache logs
 USER pdr
 
 # configs
 
 EXPOSE 9999
-VOLUME /home/pdr/.pandora
+VOLUME /home/pdr/.pandora /home/pdr/lib/pandora/cache /home/pdr/logs
 ENTRYPOINT ["/tini", "--"]
 CMD ["/entrypoint.sh"]
