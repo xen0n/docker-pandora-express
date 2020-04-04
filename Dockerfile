@@ -7,8 +7,8 @@ ARG arch=x64
 ADD https://github.com/krallin/tini/releases/download/v0.18.0/tini /tini
 RUN chmod +x /tini
 
-COPY buildfs /
 COPY prebuilts /prebuilts
+COPY buildfs /
 RUN /build/prepare-image.sh /prebuilts/pandora-express-v${version}-${os}-${arch}.tar.gz /image
 
 # assemble final image
@@ -16,8 +16,8 @@ RUN /build/prepare-image.sh /prebuilts/pandora-express-v${version}-${os}-${arch}
 FROM openjdk:11.0.6-jre-buster AS final
 RUN useradd -m pdr
 COPY --from=build /tini /tini
-COPY rootfs /
 COPY --from=build /image /home/pdr
+COPY rootfs /
 
 WORKDIR /home/pdr
 # adjust permissions before changing into the user
