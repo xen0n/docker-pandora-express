@@ -51,8 +51,10 @@ trim() {
     # 7 directories, 13 files
 
     # un-bundle things
-    rm -rf lib/jdk-*
-    rm -rf lib/mysql
+    # XXX there's a f**king manifest check during app init
+    # so these files must be left alone atm
+    #rm -rf lib/jdk-*
+    #rm -rf lib/mysql
 
     # this is injected on container creation
     rm conf/elasticsearch.yml
